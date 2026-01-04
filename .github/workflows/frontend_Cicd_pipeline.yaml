@@ -134,7 +134,7 @@ jobs:
   update-manifests:
     name: Update K8s Manifests
     runs-on: ubuntu-latest
-    needs: [ build-splitwise-frontend ]
+    needs: [ checkout, build-splitwise-frontend ]
     if: github.ref == 'refs/heads/master'
     steps:
     - uses: actions/checkout@v4
@@ -144,11 +144,11 @@ jobs:
       run: |
         TAG=${{ needs.checkout.outputs.commit }}-${{ github.run_number }}
         SPLITWISE_FRONTEND_IMAGE=${{ env.ECR_REGISTRY }}/${{ env.SPLIWISE_FRONTEND_REPO }}:$TAG
-        
+
         echo "Updating manifests with tag: $TAG"
 
         sed -i "s|image: .*|image: $SPLITWISE_FRONTEND_IMAGE|" k8s/deployment.yaml
-        
+
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add k8s/
