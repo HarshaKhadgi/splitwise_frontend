@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: splitwise-frontend
-          image: 310997740486.dkr.ecr.ap-south-1.amazonaws.com/splitwise-frontend:8aa703ea1279a1de9b8958f178f827db25be5ac9-8
+          image: 310997740486.dkr.ecr.ap-south-1.amazonaws.com/splitwise-frontend:010fac3e554c61f00421c9d0fbf3347958811769-9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
